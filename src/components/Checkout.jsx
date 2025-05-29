@@ -58,9 +58,7 @@ const Checkout = ({ cartItems, total }) => {
                       <div className="mt-1 p-3 bg-gray-50 rounded-md">
                         <p className="text-gray-700">
                           {selectedLocation
-                            ? `${selectedLocation.lat.toFixed(
-                                6
-                              )}, ${selectedLocation.lng.toFixed(6)}`
+                            ? selectedLocation.name
                             : "Manzil tanlanmagan"}
                         </p>
                       </div>
