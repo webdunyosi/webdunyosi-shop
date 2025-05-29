@@ -1,9 +1,9 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React from "react"
+import { Link } from "react-router-dom"
 
 const Cart = ({ cartItems, totalPrice, onIncrease, onDecrease }) => {
   return (
-    <div className="p-5">
+    <div className="p-5 pb-24">
       <Link
         to="/"
         className="text-2xl font-bold text-indigo-600 hover:text-indigo-800 block mb-5 text-center"
@@ -14,7 +14,7 @@ const Cart = ({ cartItems, totalPrice, onIncrease, onDecrease }) => {
       <h2 className="text-xl font-semibold mb-4">Savatcha</h2>
 
       {cartItems.length === 0 ? (
-        <p>Savat hozircha bo‘sh.</p>
+        <p>Savat hozircha bo'sh.</p>
       ) : (
         <div className="space-y-4">
           {cartItems.map((item) => (
@@ -30,7 +30,7 @@ const Cart = ({ cartItems, totalPrice, onIncrease, onDecrease }) => {
                 />
                 <div>
                   <h3 className="font-bold">{item.name}</h3>
-                  <p>{item.price.toLocaleString()} so‘m</p>
+                  <p>{item.price.toLocaleString()} so'm</p>
                 </div>
               </div>
 
@@ -55,16 +55,25 @@ const Cart = ({ cartItems, totalPrice, onIncrease, onDecrease }) => {
       )}
 
       <div className="fixed bottom-0 left-0 w-full bg-indigo-600 text-white p-4 flex justify-between items-center shadow-lg">
-        <span>Jami: {totalPrice.toLocaleString()} so‘m</span>
-        <Link
-          to="/"
-          className="bg-white text-indigo-600 px-4 py-2 rounded-lg font-semibold hover:bg-gray-100 duration-300"
-        >
-          🏠 Asosiy sahifaga qaytish
-        </Link>
+        <div className="flex items-center gap-4">
+          <span className="text-lg font-semibold">
+            Jami: {totalPrice.toLocaleString()} so'm
+          </span>
+          <Link to="/" className="text-white hover:text-gray-200 duration-300">
+            🏠 Asosiy sahifaga qaytish
+          </Link>
+        </div>
+        {cartItems.length > 0 && (
+          <Link
+            to="/checkout"
+            className="bg-white text-indigo-600 px-6 py-2 rounded-lg font-semibold hover:bg-gray-100 duration-300"
+          >
+            Buyurtma berish
+          </Link>
+        )}
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Cart;
+export default Cart
