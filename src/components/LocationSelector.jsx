@@ -1,11 +1,5 @@
 import React, { useState, useEffect } from "react"
-import {
-  MapContainer,
-  TileLayer,
-  Marker,
-  useMapEvents,
-  Popup,
-} from "react-leaflet"
+import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet"
 import "leaflet/dist/leaflet.css"
 import L from "leaflet"
 
@@ -20,8 +14,8 @@ L.Icon.Default.mergeOptions({
     "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png",
 })
 
-// Custom icon for the store location
-const storeIcon = new L.Icon({
+// Custom icons for different locations
+const officeIcon = new L.Icon({
   iconUrl:
     "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png",
   shadowUrl:
@@ -32,42 +26,54 @@ const storeIcon = new L.Icon({
   shadowSize: [41, 41],
 })
 
-const LocationMarker = ({ position, setPosition }) => {
-  useMapEvents({
-    click(e) {
-      setPosition(e.latlng)
-    },
-  })
-
-  return position ? <Marker position={position} /> : null
-}
+const storeIcon = new L.Icon({
+  iconUrl:
+    "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-blue.png",
+  shadowUrl:
+    "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png",
+  iconSize: [25, 41],
+  iconAnchor: [12, 41],
+  popupAnchor: [1, -34],
+  shadowSize: [41, 41],
+})
 
 const LocationSelector = ({ onLocationSelect }) => {
-  const [position, setPosition] = useState(null)
+  const [selectedLocation, setSelectedLocation] = useState(null)
   const [address, setAddress] = useState("")
 
-  // Store location coordinates in Navoiy
-  const storeLocation = [40.102535, 65.3859922] // Navoiy coordinates
+  // Store locations in Navoiy
+  const officeLocation = [40.102535, 65.3859922] // Codevent office
+  const storeLocation = [40.0897718, 65.3813771] // Magazin U Sirocha
 
-  useEffect(() => {
-    if (position) {
-      // Here you would typically use a geocoding service to get the address
-      // For now, we'll just use the coordinates
-      setAddress(`${position.lat.toFixed(6)}, ${position.lng.toFixed(6)}`)
-      onLocationSelect(position)
-    }
-  }, [position, onLocationSelect])
+  const handleLocationClick = (location, name, type) => {
+    const locationData = { lat: location[0], lng: location[1] }
+    setSelectedLocation(locationData)
+    setAddress(name)
+    onLocationSelect({
+      ...locationData,
+      name,
+      type,
+    })
+  }
 
   return (
     <div className="w-full max-w-4xl mx-auto p-4">
-      <div className="bg-white rounded-lg shadow-lg p-6">
-        <h2 className="text-2xl font-semibold mb-4">
-          Yetkazib berish manzilini tanlang
-        </h2>
-        <div className="h-[500px] w-full rounded-lg overflow-hidden mb-4 border-2 border-gray-200">
+      <div className="bg-white rounded-xl shadow-2xl p-6 border border-gray-100">
+        <div className="flex items-center justify-between mb-6">
+          <h2 className="text-2xl font-bold text-gray-800">
+            Yetkazib berish manzilini tanlang
+          </h2>
+          {selectedLocation && (
+            <span className="px-4 py-2 bg-green-100 text-green-700 rounded-full text-sm font-medium">
+              Manzil tanlandi
+            </span>
+          )}
+        </div>
+
+        <div className="h-[500px] w-full rounded-xl overflow-hidden mb-6 border-2 border-gray-200 shadow-lg">
           <MapContainer
-            center={storeLocation}
-            zoom={16}
+            center={[40.0961534, 65.38368465]}
+            zoom={15}
             style={{ height: "100%", width: "100%" }}
             className="z-10"
           >
@@ -75,33 +81,112 @@ const LocationSelector = ({ onLocationSelect }) => {
               url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
               attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             />
-            <Marker position={storeLocation} icon={storeIcon}>
+            <Marker
+              position={officeLocation}
+              icon={officeIcon}
+              eventHandlers={{
+                click: () =>
+                  handleLocationClick(officeLocation, "Codevent", "office"),
+              }}
+            >
               <Popup>
-                <div className="text-center">
-                  <h3 className="font-bold text-lg">Codevent</h3>
+                <div className="text-center p-2">
+                  <h3 className="font-bold text-lg text-gray-800">Codevent</h3>
                   <p className="text-sm text-gray-600">Navoiy shahri</p>
                   <p className="text-sm text-gray-600 mt-1">Bizning ofisimiz</p>
+                  <button
+                    onClick={() =>
+                      handleLocationClick(officeLocation, "Codevent", "office")
+                    }
+                    className="mt-2 px-4 py-1 bg-blue-600 text-white rounded-lg text-sm hover:bg-blue-700 transition-colors"
+                  >
+                    Tanlash
+                  </button>
                 </div>
               </Popup>
             </Marker>
-            <LocationMarker position={position} setPosition={setPosition} />
+            <Marker
+              position={storeLocation}
+              icon={storeIcon}
+              eventHandlers={{
+                click: () =>
+                  handleLocationClick(
+                    storeLocation,
+                    "Magazin U Sirocha",
+                    "store"
+                  ),
+              }}
+            >
+              <Popup>
+                <div className="text-center p-2">
+                  <h3 className="font-bold text-lg text-gray-800">
+                    Magazin U Sirocha
+                  </h3>
+                  <p className="text-sm text-gray-600">Navoiy shahri</p>
+                  <p className="text-sm text-gray-600 mt-1">
+                    Bizning do'konimiz
+                  </p>
+                  <button
+                    onClick={() =>
+                      handleLocationClick(
+                        storeLocation,
+                        "Magazin U Sirocha",
+                        "store"
+                      )
+                    }
+                    className="mt-2 px-4 py-1 bg-blue-600 text-white rounded-lg text-sm hover:bg-blue-700 transition-colors"
+                  >
+                    Tanlash
+                  </button>
+                </div>
+              </Popup>
+            </Marker>
           </MapContainer>
         </div>
-        {address && (
-          <div className="mt-4 p-4 bg-gray-50 rounded-lg">
-            <p className="text-gray-700">
-              <span className="font-semibold">Tanlangan manzil:</span> {address}
-            </p>
+
+        {selectedLocation && (
+          <div className="mt-4 p-4 bg-gray-50 rounded-xl border border-gray-200">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-gray-700 font-medium">
+                  Tanlangan manzil: {address}
+                </p>
+                <p className="text-sm text-gray-500 mt-1">
+                  {selectedLocation.type === "office" ? "Ofis" : "Do'kon"}
+                </p>
+              </div>
+              <button
+                onClick={() => {
+                  setSelectedLocation(null)
+                  setAddress("")
+                  onLocationSelect(null)
+                }}
+                className="text-red-600 hover:text-red-700 text-sm font-medium"
+              >
+                Bekor qilish
+              </button>
+            </div>
           </div>
         )}
-        <div className="mt-4">
-          <p className="text-sm text-gray-600">
-            Xaritadan yetkazib berish manzilini tanlang yoki koordinatalarni
-            kiriting
-          </p>
-          <p className="text-sm text-red-600 mt-2">
-            Qizil belgi - bizning ofisimiz joylashgan manzil (Navoiy shahri)
-          </p>
+
+        <div className="mt-6 bg-gray-50 p-4 rounded-xl border border-gray-200">
+          <h3 className="font-semibold text-gray-800 mb-3">
+            Manzillar haqida ma'lumot:
+          </h3>
+          <div className="space-y-3">
+            <div className="flex items-center gap-3">
+              <div className="w-3 h-3 rounded-full bg-red-500"></div>
+              <p className="text-sm text-gray-700">
+                Codevent ofisi - Navoiy shahri
+              </p>
+            </div>
+            <div className="flex items-center gap-3">
+              <div className="w-3 h-3 rounded-full bg-blue-500"></div>
+              <p className="text-sm text-gray-700">
+                Magazin U Sirocha - Navoiy shahri
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
