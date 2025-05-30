@@ -70,7 +70,7 @@ const LocationSelector = ({ onLocationSelect }) => {
           )}
         </div>
 
-        <div className="h-[500px] w-full rounded-xl overflow-hidden mb-6 border-2 border-gray-200 shadow-lg">
+        <div className="h-[300px] sm:h-[400px] md:h-[500px] w-full rounded-xl overflow-hidden mb-6 border-2 border-gray-200 shadow-lg">
           <MapContainer
             center={[40.0961534, 65.38368465]}
             zoom={15}
