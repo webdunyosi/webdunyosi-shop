@@ -1,12 +1,11 @@
 import React, { useState } from "react"
 import LocationSelector from "./LocationSelector"
 
-const Checkout = ({ cartItems, total }) => {
+const Checkout = ({ cartItems, total, setNotification }) => {
   const [selectedLocation, setSelectedLocation] = useState(null)
   const [step, setStep] = useState(1)
   const [name, setName] = useState("")
   const [phone, setPhone] = useState("")
-  const [showNotification, setShowNotification] = useState(false)
 
   const handleLocationSelect = (location) => {
     setSelectedLocation(location)
@@ -49,21 +48,26 @@ const Checkout = ({ cartItems, total }) => {
       .then((data) => {
         console.log("Telegram API response:", data)
         if (data.ok) {
-          alert("Buyurtma qabul qilindi!")
           setName("")
           setPhone("")
-          setShowNotification(true)
-          setTimeout(() => {
-            setShowNotification(false)
-          }, 3000)
+          setNotification({
+            message: "Buyurtma qabul qilindi!",
+            isVisible: true,
+          })
           // Optionally clear cart and redirect
         } else {
-          alert("Xato yuz berdi. Iltimos, qayta urinib ko'ring.")
+          setNotification({
+            message: "Xato yuz berdi. Iltimos, qayta urinib ko'ring.",
+            isVisible: true,
+          })
         }
       })
       .catch((error) => {
         console.error("Error sending message to Telegram:", error)
-        alert("Xato yuz berdi. Iltimos, qayta urinib ko'ring.")
+        setNotification({
+          message: "Xato yuz berdi. Iltimos, qayta urinib ko'ring.",
+          isVisible: true,
+        })
       })
 
     console.log("Order submitted with location:", selectedLocation)
@@ -71,11 +75,6 @@ const Checkout = ({ cartItems, total }) => {
 
   return (
     <div className="min-h-screen bg-gray-50 py-8">
-      {showNotification && (
-        <div className="fixed bottom-5 right-5 bg-green-500 text-white py-3 px-6 rounded-md shadow-lg">
-          Buyurtmangiz qabul qilindi!
-        </div>
-      )}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col md:flex-row gap-8">
           {/* Main Content */}

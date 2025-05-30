@@ -102,7 +102,13 @@ const App = () => {
           />
           <Route
             path="/checkout"
-            element={<Checkout cartItems={cart} total={totalPrice} />}
+            element={
+              <Checkout
+                cartItems={cart}
+                total={totalPrice}
+                setNotification={setNotification}
+              />
+            }
           />
         </Routes>
         <Notification
