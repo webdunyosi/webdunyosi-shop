@@ -4,12 +4,6 @@ import { Link } from "react-router-dom"
 const Cart = ({ cartItems, totalPrice, onIncrease, onDecrease }) => {
   return (
     <div className="p-5 pb-24">
-      <Link
-        to="/"
-        className="text-2xl font-bold text-indigo-600 hover:text-indigo-800 block mb-5 text-center"
-      >
-        🛍 Webdunyosi Shop
-      </Link>
 
       <h2 className="text-xl font-semibold mb-4">Savatcha</h2>
 
