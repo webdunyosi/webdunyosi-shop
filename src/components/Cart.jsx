@@ -55,14 +55,17 @@ const Cart = ({ cartItems, totalPrice, onIncrease, onDecrease }) => {
       )}
 
       <div className="fixed bottom-0 left-0 w-full bg-indigo-600 text-white p-4 flex justify-between items-center shadow-lg">
-        <div className="flex items-center gap-4">
+        {/* <div className="flex items-center gap-4">
           <span className="text-lg font-semibold">
             Jami: {totalPrice.toLocaleString()} so'm
           </span>
           <Link to="/" className="text-white hover:text-gray-200 duration-300">
             🏠 Asosiy sahifaga qaytish
           </Link>
-        </div>
+        </div> */}
+        <span className="text-lg font-semibold">
+          Jami: {totalPrice.toLocaleString()} so'm
+        </span>
         {cartItems.length > 0 && (
           <Link
             to="/checkout"
