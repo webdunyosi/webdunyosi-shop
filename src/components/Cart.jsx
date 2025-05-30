@@ -4,7 +4,6 @@ import { Link } from "react-router-dom"
 const Cart = ({ cartItems, totalPrice, onIncrease, onDecrease }) => {
   return (
     <div className="p-5 pb-24">
-
       <h2 className="text-xl font-semibold mb-4">Savatcha</h2>
 
       {cartItems.length === 0 ? (
@@ -55,8 +54,22 @@ const Cart = ({ cartItems, totalPrice, onIncrease, onDecrease }) => {
         {cartItems.length > 0 && (
           <Link
             to="/checkout"
-            className="bg-white text-indigo-600 px-6 py-2 rounded-lg font-semibold hover:bg-gray-100 duration-300"
+            className="bg-white text-indigo-600 px-8 py-3 rounded-xl font-semibold hover:bg-gray-200 duration-300 flex items-center gap-2"
           >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              strokeWidth="2"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M10 12H7m3 4H7m6-4h.01M17 12h-3m3 4h-3m-6 4h.01M10 16H7m3 0h.01"
+              />
+            </svg>
             Buyurtma berish
           </Link>
         )}
