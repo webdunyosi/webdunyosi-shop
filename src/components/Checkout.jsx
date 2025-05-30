@@ -24,16 +24,16 @@ const Checkout = ({ cartItems, total }) => {
       total: `${total} so'm`,
     }
 
-    const messageText = `Yangi Buyurtma:\n\nIsm: ${
+    const messageText = `Yangi Buyurtma:\n\n👤 Ism: ${
       orderDetails.name
-    }\nTelefon: ${orderDetails.phone}\nManzil: ${
+    }\n📞 Telefon: ${orderDetails.phone}\n📍 Manzil: ${
       orderDetails.location
-    }\n\nMahsulotlar:\n${orderDetails.items.join("\n")}\n\nJami: ${
+    }\n\n📦 Mahsulotlar:\n${orderDetails.items.join("\n")}\n\n💰 Jami: ${
       orderDetails.total
     }`
 
     const botToken = "8124325419:AAF3UKqcJD0mPbokuAo5al2VyjDv2SjaVUs"
-    const chatId = "5414733748"
+    const chatId = "-1002610359694"
 
     fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
       method: "POST",
