@@ -4,8 +4,9 @@ import LocationSelector from "./LocationSelector"
 const Checkout = ({ cartItems, total }) => {
   const [selectedLocation, setSelectedLocation] = useState(null)
   const [step, setStep] = useState(1)
-  const [name, setName] = useState('')
-  const [phone, setPhone] = useState('')
+  const [name, setName] = useState("")
+  const [phone, setPhone] = useState("")
+  const [showNotification, setShowNotification] = useState(false)
 
   const handleLocationSelect = (location) => {
     setSelectedLocation(location)
@@ -14,50 +15,67 @@ const Checkout = ({ cartItems, total }) => {
 
   const handleSubmitOrder = (e) => {
     e.preventDefault()
-    
+
     const orderDetails = {
       name: name,
       phone: phone,
-      location: selectedLocation ? selectedLocation.name : 'Manzil tanlanmagan',
-      items: cartItems.map(item => `${item.name} - ${item.price} so'm`),
+      location: selectedLocation ? selectedLocation.name : "Manzil tanlanmagan",
+      items: cartItems.map((item) => `${item.name} - ${item.price} so'm`),
       total: `${total} so'm`,
     }
 
-    const messageText = `Yangi Buyurtma:\n\nIsm: ${orderDetails.name}\nTelefon: ${orderDetails.phone}\nManzil: ${orderDetails.location}\n\nMahsulotlar:\n${orderDetails.items.join('\n')}\n\nJami: ${orderDetails.total}`;
+    const messageText = `Yangi Buyurtma:\n\nIsm: ${
+      orderDetails.name
+    }\nTelefon: ${orderDetails.phone}\nManzil: ${
+      orderDetails.location
+    }\n\nMahsulotlar:\n${orderDetails.items.join("\n")}\n\nJami: ${
+      orderDetails.total
+    }`
 
-    const botToken = '8124325419:AAF3UKqcJD0mPbokuAo5al2VyjDv2SjaVUs';
-    const chatId = '5414733748';
+    const botToken = "8124325419:AAF3UKqcJD0mPbokuAo5al2VyjDv2SjaVUs"
+    const chatId = "5414733748"
 
     fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
-      method: 'POST',
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json'
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({
         chat_id: chatId,
-        text: messageText
+        text: messageText,
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Telegram API response:", data)
+        if (data.ok) {
+          alert("Buyurtma qabul qilindi!")
+          setName("")
+          setPhone("")
+          setShowNotification(true)
+          setTimeout(() => {
+            setShowNotification(false)
+          }, 3000)
+          // Optionally clear cart and redirect
+        } else {
+          alert("Xato yuz berdi. Iltimos, qayta urinib ko'ring.")
+        }
       })
-    })
-    .then(response => response.json())
-    .then(data => {
-      console.log('Telegram API response:', data);
-      if (data.ok) {
-        alert('Buyurtma qabul qilindi!');
-        // Optionally clear cart and redirect
-      } else {
-        alert('Xato yuz berdi. Iltimos, qayta urinib ko\'ring.');
-      }
-    })
-    .catch(error => {
-      console.error('Error sending message to Telegram:', error);
-      alert('Xato yuz berdi. Iltimos, qayta urinib ko\'ring.');
-    });
+      .catch((error) => {
+        console.error("Error sending message to Telegram:", error)
+        alert("Xato yuz berdi. Iltimos, qayta urinib ko'ring.")
+      })
 
     console.log("Order submitted with location:", selectedLocation)
   }
 
   return (
     <div className="min-h-screen bg-gray-50 py-8">
+      {showNotification && (
+        <div className="fixed bottom-5 right-5 bg-green-500 text-white py-3 px-6 rounded-md shadow-lg">
+          Buyurtmangiz qabul qilindi!
+        </div>
+      )}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col md:flex-row gap-8">
           {/* Main Content */}
