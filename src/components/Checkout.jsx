@@ -153,9 +153,24 @@ const Checkout = ({ cartItems, total, setNotification }) => {
               </h3>
               <div className="space-y-4">
                 {cartItems.map((item) => (
-                  <div key={item.id} className="flex justify-between">
-                    <span>{item.name}</span>
-                    <span>{item.price} so'm</span>
+                  <div
+                    key={item.id}
+                    className="flex items-center justify-between"
+                  >
+                    <div className="flex items-center gap-4">
+                      <img
+                        src={item.image}
+                        alt={item.name}
+                        className="w-16 h-16 object-cover rounded-md"
+                      />
+                      <div>
+                        <span className="font-medium">{item.name}</span>
+                        <p className="text-gray-600 text-sm">
+                          Soni: {item.quantity}
+                        </p>
+                      </div>
+                    </div>
+                    <span>{item.price.toLocaleString()} so'm</span>
                   </div>
                 ))}
                 <div className="border-t pt-4">
