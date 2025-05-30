@@ -4,6 +4,8 @@ import LocationSelector from "./LocationSelector"
 const Checkout = ({ cartItems, total }) => {
   const [selectedLocation, setSelectedLocation] = useState(null)
   const [step, setStep] = useState(1)
+  const [name, setName] = useState('')
+  const [phone, setPhone] = useState('')
 
   const handleLocationSelect = (location) => {
     setSelectedLocation(location)
@@ -12,7 +14,45 @@ const Checkout = ({ cartItems, total }) => {
 
   const handleSubmitOrder = (e) => {
     e.preventDefault()
-    // Here you would typically handle the order submission
+    
+    const orderDetails = {
+      name: name,
+      phone: phone,
+      location: selectedLocation ? selectedLocation.name : 'Manzil tanlanmagan',
+      items: cartItems.map(item => `${item.name} - ${item.price} so'm`),
+      total: `${total} so'm`,
+    }
+
+    const messageText = `Yangi Buyurtma:\n\nIsm: ${orderDetails.name}\nTelefon: ${orderDetails.phone}\nManzil: ${orderDetails.location}\n\nMahsulotlar:\n${orderDetails.items.join('\n')}\n\nJami: ${orderDetails.total}`;
+
+    const botToken = '8124325419:AAF3UKqcJD0mPbokuAo5al2VyjDv2SjaVUs';
+    const chatId = '5414733748';
+
+    fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        chat_id: chatId,
+        text: messageText
+      })
+    })
+    .then(response => response.json())
+    .then(data => {
+      console.log('Telegram API response:', data);
+      if (data.ok) {
+        alert('Buyurtma qabul qilindi!');
+        // Optionally clear cart and redirect
+      } else {
+        alert('Xato yuz berdi. Iltimos, qayta urinib ko\'ring.');
+      }
+    })
+    .catch(error => {
+      console.error('Error sending message to Telegram:', error);
+      alert('Xato yuz berdi. Iltimos, qayta urinib ko\'ring.');
+    });
+
     console.log("Order submitted with location:", selectedLocation)
   }
 
@@ -39,6 +79,8 @@ const Checkout = ({ cartItems, total }) => {
                         type="text"
                         className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
                         required
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
                       />
                     </div>
                     <div>
@@ -49,6 +91,8 @@ const Checkout = ({ cartItems, total }) => {
                         type="tel"
                         className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
                         required
+                        value={phone}
+                        onChange={(e) => setPhone(e.target.value)}
                       />
                     </div>
                     <div>
