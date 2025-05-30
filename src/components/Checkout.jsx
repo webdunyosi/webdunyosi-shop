@@ -95,7 +95,7 @@ const Checkout = ({ cartItems, total }) => {
                       </label>
                       <input
                         type="text"
-                        className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                        className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
                         required
                         value={name}
                         onChange={(e) => setName(e.target.value)}
@@ -107,7 +107,7 @@ const Checkout = ({ cartItems, total }) => {
                       </label>
                       <input
                         type="tel"
-                        className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                        className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
                         required
                         value={phone}
                         onChange={(e) => setPhone(e.target.value)}
@@ -117,7 +117,7 @@ const Checkout = ({ cartItems, total }) => {
                       <label className="block text-sm font-medium text-gray-700">
                         Manzil
                       </label>
-                      <div className="mt-1 p-3 bg-gray-50 rounded-md">
+                      <div className="mt-1 px-3 py-2 bg-gray-50 border border-gray-300 rounded-lg">
                         <p className="text-gray-700">
                           {selectedLocation
                             ? selectedLocation.name
