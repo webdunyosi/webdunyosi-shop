@@ -1,4 +1,4 @@
-import React from "react";
+import React from "react"
 
 const ProductCard = ({ product, onBuy }) => {
   return (
@@ -19,7 +19,7 @@ const ProductCard = ({ product, onBuy }) => {
         🛒 Sotib olish
       </button>
     </div>
-  );
-};
+  )
+}
 
-export default ProductCard;
+export default ProductCard

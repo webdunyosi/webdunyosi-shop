@@ -4,9 +4,14 @@ import products from "./data/products"
 import ProductCard from "./components/ProductCard"
 import Cart from "./components/Cart"
 import Checkout from "./components/Checkout"
+import Notification from "./components/Notification"
 
 const App = () => {
   const [cart, setCart] = useState([])
+  const [notification, setNotification] = useState({
+    message: "",
+    isVisible: false,
+  })
 
   const handleBuy = (product) => {
     setCart((prevCart) => {
@@ -21,6 +26,13 @@ const App = () => {
         return [...prevCart, { ...product, quantity: 1 }]
       }
     })
+    setNotification({
+      message: `${product.name} savatchaga qo'shildi!`,
+      isVisible: true,
+    })
+    setTimeout(() => {
+      setNotification({ message: "", isVisible: false })
+    }, 3000)
   }
 
   const handleIncrease = (product) => {
@@ -93,6 +105,10 @@ const App = () => {
             element={<Checkout cartItems={cart} total={totalPrice} />}
           />
         </Routes>
+        <Notification
+          message={notification.message}
+          isVisible={notification.isVisible}
+        />
       </div>
     </Router>
   )
