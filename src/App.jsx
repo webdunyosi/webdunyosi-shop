@@ -5,6 +5,8 @@ import ProductCard from "./components/ProductCard"
 import Cart from "./components/Cart"
 import Checkout from "./components/Checkout"
 import Notification from "./components/Notification"
+import { DarkModeProvider } from "./context/DarkModeContext"
+import DarkModeToggle from "./components/DarkModeToggle"
 
 const App = () => {
   const [cart, setCart] = useState([])
@@ -61,62 +63,68 @@ const App = () => {
   )
 
   return (
-    <Router>
-      <div className="min-h-screen bg-gray-100 p-5 md:p-10 relative">
-        <header className="flex justify-between items-center mb-10">
-          <h1 className="text-2xl md:text-4xl font-extrabold text-indigo-600">
-            <Link to="/">🛍 Webdunyosi Shop</Link>
-          </h1>
-          <Link
-            to="/cart"
-            className="bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 duration-300"
-          >
-            Savatcha ({cart.reduce((total, item) => total + item.quantity, 0)})
-          </Link>
-        </header>
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
-                {products.map((product) => (
-                  <ProductCard
-                    key={product.id}
-                    product={product}
-                    onBuy={handleBuy}
-                  />
-                ))}
-              </div>
-            }
+    <DarkModeProvider>
+      <Router>
+        <div className="min-h-screen bg-gray-100 dark:bg-gray-900 p-5 md:p-10 relative transition-colors duration-200">
+          <header className="flex justify-between items-center mb-10">
+            <h1 className="text-2xl md:text-4xl font-extrabold text-indigo-600 dark:text-indigo-400">
+              <Link to="/">🛍 Webdunyosi Shop</Link>
+            </h1>
+            <div className="flex items-center gap-4">
+              <DarkModeToggle />
+              <Link
+                to="/cart"
+                className="bg-indigo-600 dark:bg-indigo-500 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 dark:hover:bg-indigo-600 duration-300"
+              >
+                Savatcha (
+                {cart.reduce((total, item) => total + item.quantity, 0)})
+              </Link>
+            </div>
+          </header>
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+                  {products.map((product) => (
+                    <ProductCard
+                      key={product.id}
+                      product={product}
+                      onBuy={handleBuy}
+                    />
+                  ))}
+                </div>
+              }
+            />
+            <Route
+              path="/cart"
+              element={
+                <Cart
+                  cartItems={cart}
+                  totalPrice={totalPrice}
+                  onIncrease={handleIncrease}
+                  onDecrease={handleDecrease}
+                />
+              }
+            />
+            <Route
+              path="/checkout"
+              element={
+                <Checkout
+                  cartItems={cart}
+                  total={totalPrice}
+                  setNotification={setNotification}
+                />
+              }
+            />
+          </Routes>
+          <Notification
+            message={notification.message}
+            isVisible={notification.isVisible}
           />
-          <Route
-            path="/cart"
-            element={
-              <Cart
-                cartItems={cart}
-                totalPrice={totalPrice}
-                onIncrease={handleIncrease}
-                onDecrease={handleDecrease}
-              />
-            }
-          />
-          <Route
-            path="/checkout"
-            element={
-              <Checkout
-                cartItems={cart}
-                total={totalPrice}
-                setNotification={setNotification}
-              />
-            }
-          />
-        </Routes>
-        <Notification
-          message={notification.message}
-          isVisible={notification.isVisible}
-        />
-      </div>
-    </Router>
+        </div>
+      </Router>
+    </DarkModeProvider>
   )
 }
 
