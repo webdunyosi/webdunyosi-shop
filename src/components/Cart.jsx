@@ -4,16 +4,16 @@ import { Link } from "react-router-dom"
 const Cart = ({ cartItems, totalPrice, onIncrease, onDecrease }) => {
   return (
     <div className="p-5 pb-24">
-      <h2 className="text-xl font-semibold mb-4 dark:text-white">Savatcha</h2>
+      <h2 className="text-xl font-semibold mb-4">Savatcha</h2>
 
       {cartItems.length === 0 ? (
-        <p className="dark:text-gray-300">Savat hozircha bo'sh.</p>
+        <p>Savat hozircha bo'sh.</p>
       ) : (
         <div className="space-y-4">
           {cartItems.map((item) => (
             <div
               key={item.id}
-              className="flex justify-between items-center bg-white dark:bg-gray-800 p-4 rounded-lg shadow-md"
+              className="flex justify-between items-center bg-white p-4 rounded-lg shadow-md"
             >
               <div className="flex items-center gap-4">
                 <img
@@ -22,10 +22,8 @@ const Cart = ({ cartItems, totalPrice, onIncrease, onDecrease }) => {
                   className="w-16 h-16 object-cover rounded-lg"
                 />
                 <div>
-                  <h3 className="font-bold dark:text-white">{item.name}</h3>
-                  <p className="dark:text-gray-300">
-                    {item.price.toLocaleString()} so'm
-                  </p>
+                  <h3 className="font-bold">{item.name}</h3>
+                  <p>{item.price.toLocaleString()} so'm</p>
                 </div>
               </div>
 
@@ -36,9 +34,7 @@ const Cart = ({ cartItems, totalPrice, onIncrease, onDecrease }) => {
                 >
                   –
                 </button>
-                <span className="font-semibold dark:text-white">
-                  {item.quantity} dona
-                </span>
+                <span className="font-semibold">{item.quantity} dona</span>
                 <button
                   onClick={() => onIncrease(item)}
                   className="bg-green-500 text-white px-2 py-1 rounded hover:bg-green-600 transition"
@@ -51,14 +47,14 @@ const Cart = ({ cartItems, totalPrice, onIncrease, onDecrease }) => {
         </div>
       )}
 
-      <div className="fixed bottom-0 left-0 w-full bg-indigo-600 dark:bg-indigo-700 text-white p-4 flex justify-between items-center shadow-lg">
+      <div className="fixed bottom-0 left-0 w-full bg-indigo-600 text-white p-4 flex justify-between items-center shadow-lg">
         <span className="text-lg font-semibold">
           Jami: {totalPrice.toLocaleString()} so'm
         </span>
         {cartItems.length > 0 && (
           <Link
             to="/checkout"
-            className="bg-white dark:bg-gray-800 text-indigo-600 dark:text-indigo-400 px-8 py-3 rounded-xl font-semibold hover:bg-gray-200 dark:hover:bg-gray-700 duration-300 flex items-center gap-2"
+            className="bg-white text-indigo-600 px-8 py-3 rounded-xl font-semibold hover:bg-gray-200 duration-300 flex items-center gap-2"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
