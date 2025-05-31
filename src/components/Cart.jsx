@@ -47,14 +47,14 @@ const Cart = ({ cartItems, totalPrice, onIncrease, onDecrease }) => {
         </div>
       )}
 
-      <div className="fixed bottom-0 left-0 w-full bg-indigo-600 text-white p-4 flex justify-between items-center shadow-lg">
+      <div className="fixed bottom-0 left-0 w-full bg-lime-500 text-black p-4 flex justify-between items-center shadow-lg">
         <span className="text-lg font-semibold">
           Jami: {totalPrice.toLocaleString()} so'm
         </span>
         {cartItems.length > 0 && (
           <Link
             to="/checkout"
-            className="bg-white text-indigo-600 px-8 py-3 rounded-xl font-semibold hover:bg-gray-200 duration-300 flex items-center gap-2"
+            className="bg-black text-lime-500 px-8 py-3 rounded-xl font-semibold hover:bg-gray-800 duration-300 flex items-center gap-2"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"

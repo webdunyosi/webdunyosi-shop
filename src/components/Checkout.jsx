@@ -74,7 +74,7 @@ const Checkout = ({ cartItems, total, setNotification }) => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 py-8">
+    <div className="min-h-screen bg-black py-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col md:flex-row gap-8">
           {/* Main Content */}
@@ -82,42 +82,42 @@ const Checkout = ({ cartItems, total, setNotification }) => {
             {step === 1 ? (
               <LocationSelector onLocationSelect={handleLocationSelect} />
             ) : (
-              <div className="bg-white rounded-lg shadow-lg p-6">
-                <h2 className="text-2xl font-semibold mb-6">
+              <div className="bg-gray-900 rounded-lg shadow-lg p-6">
+                <h2 className="text-2xl font-semibold mb-6 text-white">
                   Buyurtma ma'lumotlari
                 </h2>
                 <form onSubmit={handleSubmitOrder}>
                   <div className="space-y-4">
                     <div>
-                      <label className="block text-sm font-medium text-gray-700">
+                      <label className="block text-sm font-medium text-gray-300">
                         Ism
                       </label>
                       <input
                         type="text"
-                        className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                        className="mt-1 block w-full px-3 py-2 border border-gray-700 bg-gray-800 text-white rounded-lg shadow-sm focus:outline-none focus:ring-lime-500 focus:border-lime-500"
                         required
                         value={name}
                         onChange={(e) => setName(e.target.value)}
                       />
                     </div>
                     <div>
-                      <label className="block text-sm font-medium text-gray-700">
+                      <label className="block text-sm font-medium text-gray-300">
                         Telefon
                       </label>
                       <input
                         type="tel"
-                        className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                        className="mt-1 block w-full px-3 py-2 border border-gray-700 bg-gray-800 text-white rounded-lg shadow-sm focus:outline-none focus:ring-lime-500 focus:border-lime-500"
                         required
                         value={phone}
                         onChange={(e) => setPhone(e.target.value)}
                       />
                     </div>
                     <div>
-                      <label className="block text-sm font-medium text-gray-700">
+                      <label className="block text-sm font-medium text-gray-300">
                         Manzil
                       </label>
-                      <div className="mt-1 px-3 py-2 bg-gray-50 border border-gray-300 rounded-lg">
-                        <p className="text-gray-700">
+                      <div className="mt-1 px-3 py-2 bg-gray-800 border border-gray-700 rounded-lg text-white">
+                        <p className="text-gray-300">
                           {selectedLocation
                             ? selectedLocation.name
                             : "Manzil tanlanmagan"}
@@ -127,7 +127,7 @@ const Checkout = ({ cartItems, total, setNotification }) => {
                     <button
                       type="button"
                       onClick={() => setStep(1)}
-                      className="text-blue-600 hover:text-blue-800"
+                      className="text-lime-500 hover:text-lime-400"
                     >
                       Manzilni o'zgartirish
                     </button>
@@ -135,7 +135,7 @@ const Checkout = ({ cartItems, total, setNotification }) => {
                   <div className="mt-6">
                     <button
                       type="submit"
-                      className="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                      className="w-full bg-lime-500 text-black py-2 px-4 rounded-md hover:bg-lime-600 focus:outline-none focus:ring-2 focus:ring-lime-500 focus:ring-offset-2"
                     >
                       Buyurtmani tasdiqlash
                     </button>

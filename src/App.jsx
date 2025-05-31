@@ -62,23 +62,23 @@ const App = () => {
 
   return (
     <Router>
-      <div className="min-h-screen bg-gray-100 p-5 md:p-10 relative">
+      <div className="min-h-screen bg-black p-5 md:p-10 relative">
         <header className="flex justify-between items-center mb-10">
-          <h1 className="text-2xl md:text-4xl font-extrabold text-indigo-600">
+          <h1 className="text-2xl md:text-4xl font-extrabold text-lime-500">
             <Link to="/" className="flex items-center gap-3">
-              <img 
-                src="webdunyosi-shop.png" 
+              <img
+                src="webdunyosi-shop.png"
                 alt="Webdunyosi Shop Logo"
                 className="h-10 w-auto object-contain rounded-xl"
               />
-              <span className="text-2xl md:text-4xl font-extrabold text-indigo-600">
+              <span className="text-2xl md:text-4xl font-extrabold text-lime-500">
                 Webdunyosi Shop
               </span>
             </Link>
           </h1>
           <Link
             to="/cart"
-            className="bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 duration-300"
+            className="bg-lime-500 text-black px-4 py-2 rounded-lg hover:bg-lime-600 duration-300"
           >
             Savatcha ({cart.reduce((total, item) => total + item.quantity, 0)})
           </Link>
