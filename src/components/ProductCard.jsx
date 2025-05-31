@@ -16,7 +16,7 @@ const ProductCard = ({ product, onBuy }) => {
         onClick={() => onBuy(product)}
         className="bg-gradient-to-r from-lime-500 to-lime-600 hover:from-lime-600 hover:to-lime-700 text-black px-6 py-2 rounded-full duration-300 shadow-md cursor-pointer active:scale-110"
       >
-        🛒 Sotib olish
+        📘 Sotib olish
       </button>
     </div>
   )

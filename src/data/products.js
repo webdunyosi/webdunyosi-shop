@@ -1,21 +1,21 @@
 const products = [
   {
     id: 1,
-    name: "Wireless Headphones",
-    price: 999_000,
-    image: "1.avif",
+    name: "Rangli Kitob",
+    price: 12_000,
+    image: "1.png",
   },
   {
     id: 2,
-    name: "Smart Watch",
-    price: 1_499_000,
-    image: "2.jpeg",
+    name: "Rangli Kitob",
+    price: 12_000,
+    image: "2.png",
   },
   {
     id: 3,
-    name: "Gaming Mouse",
-    price: 499_000,
-    image: "3.jpg",
+    name: "Rangli Kitob",
+    price: 12_000,
+    image: "3.png",
   },
 ];
 
