@@ -6,6 +6,7 @@ import Cart from "./components/Cart"
 import Checkout from "./components/Checkout"
 import Notification from "./components/Notification"
 import Header from "./components/Header"
+import ProductDetailView from "./components/ProductDetailView"
 
 const App = () => {
   const [cart, setCart] = useState([])
@@ -13,6 +14,7 @@ const App = () => {
     message: "",
     isVisible: false,
   })
+  const [selectedProduct, setSelectedProduct] = useState(null)
 
   const handleBuy = (product) => {
     setCart((prevCart) => {
@@ -77,6 +79,7 @@ const App = () => {
                     key={product.id}
                     product={product}
                     onBuy={handleBuy}
+                    onCardClick={setSelectedProduct}
                   />
                 ))}
               </div>
@@ -104,6 +107,12 @@ const App = () => {
             }
           />
         </Routes>
+        {selectedProduct && (
+          <ProductDetailView
+            product={selectedProduct}
+            onClose={() => setSelectedProduct(null)}
+          />
+        )}
         <Notification
           message={notification.message}
           isVisible={notification.isVisible}

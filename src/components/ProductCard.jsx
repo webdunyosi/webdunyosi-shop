@@ -1,8 +1,12 @@
 import React from "react"
 
-const ProductCard = ({ product, onBuy }) => {
+const ProductCard = ({ product, onBuy, onCardClick }) => {
   return (
-    <div className="bg-gray-900 shadow-lg rounded-2xl p-5 flex flex-col items-center transition transform hover:scale-105">
+    <div
+      className="bg-gray-900 shadow-lg rounded-2xl p-5 flex flex-col items-center transition transform hover:scale-105"
+      onClick={() => onCardClick(product)}
+      style={{ cursor: "pointer" }}
+    >
       <img
         src={product.image}
         alt={product.name}
