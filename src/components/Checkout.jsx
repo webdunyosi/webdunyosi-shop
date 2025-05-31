@@ -19,7 +19,9 @@ const Checkout = ({ cartItems, total, setNotification }) => {
       name: name,
       phone: phone,
       location: selectedLocation ? selectedLocation.name : "Manzil tanlanmagan",
-      items: cartItems.map((item) => `${item.name} - ${item.price} so'm`),
+      items: cartItems.map(
+        (item) => `${item.name} (${item.quantity}ta) - ${item.price} so'm`
+      ),
       total: `${total} so'm`,
     }
 
