@@ -36,7 +36,7 @@ const Cart = ({ cartItems, totalPrice, onIncrease, onDecrease }) => {
                 >
                   –
                 </button>
-                <span className="font-semibold">{item.quantity} dona</span>
+                <span className="font-semibold">{item.quantity}</span>
                 <button
                   onClick={() => onIncrease(item)}
                   className="bg-green-500 text-white px-2 py-1 rounded hover:bg-green-600 transition"
