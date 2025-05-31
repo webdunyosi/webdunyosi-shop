@@ -58,19 +58,19 @@ const LocationSelector = ({ onLocationSelect }) => {
 
   return (
     <div className="w-full max-w-4xl mx-auto">
-      <div className="bg-white rounded-xl shadow-2xl p-6 border border-gray-100">
+      <div className="bg-gray-900 rounded-xl shadow-2xl p-6 border border-gray-700 text-white">
         <div className="flex items-center justify-between mb-6">
-          <h2 className="text-2xl font-bold text-gray-800">
+          <h2 className="text-2xl font-bold">
             Yetkazib berish manzilini tanlang
           </h2>
           {selectedLocation && (
-            <span className="px-4 py-2 bg-green-100 text-green-700 rounded-full text-sm font-medium">
+            <span className="px-4 py-2 bg-lime-500 text-black rounded-full text-sm font-medium">
               Manzil tanlandi
             </span>
           )}
         </div>
 
-        <div className="h-[300px] sm:h-[400px] md:h-[500px] w-full rounded-xl overflow-hidden mb-6 border-2 border-gray-200 shadow-lg">
+        <div className="h-[300px] sm:h-[400px] md:h-[500px] w-full rounded-xl overflow-hidden mb-6 border-2 border-gray-700 shadow-lg">
           <MapContainer
             center={[40.0961534, 65.38368465]}
             zoom={15}
@@ -98,7 +98,7 @@ const LocationSelector = ({ onLocationSelect }) => {
                     onClick={() =>
                       handleLocationClick(officeLocation, "Codevent", "office")
                     }
-                    className="mt-2 px-4 py-1 bg-blue-600 text-white rounded-lg text-sm hover:bg-blue-700 transition-colors"
+                    className="mt-2 px-4 py-1 bg-lime-500 text-black rounded-lg text-sm hover:bg-lime-600 transition-colors"
                   >
                     Tanlash
                   </button>
@@ -134,7 +134,7 @@ const LocationSelector = ({ onLocationSelect }) => {
                         "store"
                       )
                     }
-                    className="mt-2 px-4 py-1 bg-blue-600 text-white rounded-lg text-sm hover:bg-blue-700 transition-colors"
+                    className="mt-2 px-4 py-1 bg-lime-500 text-black rounded-lg text-sm hover:bg-lime-600 transition-colors"
                   >
                     Tanlash
                   </button>
@@ -145,13 +145,13 @@ const LocationSelector = ({ onLocationSelect }) => {
         </div>
 
         {selectedLocation && (
-          <div className="mt-4 p-4 bg-gray-50 rounded-xl border border-gray-200">
+          <div className="mt-4 p-4 bg-gray-800 rounded-xl border border-gray-700">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-gray-700 font-medium">
+                <p className="text-gray-300 font-medium">
                   Tanlangan manzil: {address}
                 </p>
-                <p className="text-sm text-gray-500 mt-1">
+                <p className="text-sm text-gray-400 mt-1">
                   {selectedLocation.type === "office" ? "Ofis" : "Do'kon"}
                 </p>
               </div>
@@ -161,7 +161,7 @@ const LocationSelector = ({ onLocationSelect }) => {
                   setAddress("")
                   onLocationSelect(null)
                 }}
-                className="text-red-600 hover:text-red-700 text-sm font-medium"
+                className="text-red-500 hover:text-red-600 text-sm font-medium"
               >
                 Bekor qilish
               </button>
@@ -169,20 +169,20 @@ const LocationSelector = ({ onLocationSelect }) => {
           </div>
         )}
 
-        <div className="mt-6 bg-gray-50 p-4 rounded-xl border border-gray-200">
-          <h3 className="font-semibold text-gray-800 mb-3">
+        <div className="mt-6 bg-gray-800 p-4 rounded-xl border border-gray-700">
+          <h3 className="font-semibold text-white mb-3">
             Manzillar haqida ma'lumot:
           </h3>
           <div className="space-y-3">
             <div className="flex items-center gap-3">
               <div className="w-3 h-3 rounded-full bg-red-500"></div>
-              <p className="text-sm text-gray-700">
+              <p className="text-sm text-white">
                 Codevent ofisi - Navoiy shahri
               </p>
             </div>
             <div className="flex items-center gap-3">
               <div className="w-3 h-3 rounded-full bg-blue-500"></div>
-              <p className="text-sm text-gray-700">
+              <p className="text-sm text-white">
                 Magazin U Sirocha - Navoiy shahri
               </p>
             </div>
