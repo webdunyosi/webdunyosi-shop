@@ -63,7 +63,7 @@ const App = () => {
   return (
     <Router>
       <div className="min-h-screen bg-black p-5 md:p-10 relative">
-        <header className="flex justify-between items-center mb-10">
+        <header className="flex justify-between items-center mb-7 md:mb-10">
           <h1 className="text-2xl md:text-4xl font-extrabold text-lime-500">
             <Link to="/" className="flex items-center gap-3">
               <img
