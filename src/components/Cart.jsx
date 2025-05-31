@@ -13,7 +13,7 @@ const Cart = ({ cartItems, totalPrice, onIncrease, onDecrease }) => {
           {cartItems.map((item) => (
             <div
               key={item.id}
-              className="flex justify-between items-center bg-gray-900 text-white p-1 md:p-4 rounded-lg shadow-md"
+              className="flex justify-between items-center bg-gray-900 text-white p-1.5 md:p-4 rounded-lg shadow-md"
             >
               <div className="flex items-center gap-4">
                 <img
