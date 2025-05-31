@@ -20,7 +20,7 @@ const Notification = ({ message, isVisible }) => {
   // Use different classes for showing/hiding with transition
   const notificationClasses = `
     fixed bottom-4 right-4
-    bg-green-500 text-white
+    bg-green-500 dark:bg-green-600 text-white
     px-6 py-3 rounded-lg shadow-lg
     transition-all duration-500 ease-in-out
     ${show ? "opacity-100 translate-y-0" : "opacity-0 translate-y-full"}
