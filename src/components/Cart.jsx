@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 
 const Cart = ({ cartItems, totalPrice, onIncrease, onDecrease }) => {
   return (
-    <div className="p-5 pb-24">
+    <div>
       <h2 className="text-xl font-semibold mb-4">Savatcha</h2>
 
       {cartItems.length === 0 ? (
