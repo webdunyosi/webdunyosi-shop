@@ -65,7 +65,16 @@ const App = () => {
       <div className="min-h-screen bg-gray-100 p-5 md:p-10 relative">
         <header className="flex justify-between items-center mb-10">
           <h1 className="text-2xl md:text-4xl font-extrabold text-indigo-600">
-            <Link to="/">🛍 Webdunyosi Shop</Link>
+            <Link to="/" className="flex items-center gap-3">
+              <img 
+                src="webdunyosi-shop.png" 
+                alt="Webdunyosi Shop Logo"
+                className="h-10 w-auto object-contain rounded-xl"
+              />
+              <span className="text-2xl md:text-4xl font-extrabold text-indigo-600">
+                Webdunyosi Shop
+              </span>
+            </Link>
           </h1>
           <Link
             to="/cart"
