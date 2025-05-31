@@ -147,7 +147,7 @@ const Checkout = ({ cartItems, total, setNotification }) => {
 
           {/* Order Summary */}
           <div className="w-full md:w-96">
-            <div className="bg-white rounded-lg shadow-lg p-6">
+            <div className="bg-gray-900 rounded-lg shadow-lg p-6 text-white">
               <h3 className="text-lg font-semibold mb-4">
                 Buyurtma ma'lumotlari
               </h3>
@@ -165,7 +165,7 @@ const Checkout = ({ cartItems, total, setNotification }) => {
                       />
                       <div>
                         <span className="font-medium">{item.name}</span>
-                        <p className="text-gray-600 text-sm">
+                        <p className="text-gray-400 text-sm">
                           Soni: {item.quantity}
                         </p>
                       </div>
@@ -173,7 +173,7 @@ const Checkout = ({ cartItems, total, setNotification }) => {
                     <span>{item.price.toLocaleString()} so'm</span>
                   </div>
                 ))}
-                <div className="border-t pt-4">
+                <div className="border-t border-gray-700 pt-4">
                   <div className="flex justify-between font-semibold">
                     <span>Jami</span>
                     <span>{total} so'm</span>

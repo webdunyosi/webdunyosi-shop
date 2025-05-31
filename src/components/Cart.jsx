@@ -13,7 +13,7 @@ const Cart = ({ cartItems, totalPrice, onIncrease, onDecrease }) => {
           {cartItems.map((item) => (
             <div
               key={item.id}
-              className="flex justify-between items-center bg-white p-4 rounded-lg shadow-md"
+              className="flex justify-between items-center bg-gray-900 text-white p-4 rounded-lg shadow-md"
             >
               <div className="flex items-center gap-4">
                 <img
@@ -23,7 +23,9 @@ const Cart = ({ cartItems, totalPrice, onIncrease, onDecrease }) => {
                 />
                 <div>
                   <h3 className="font-bold">{item.name}</h3>
-                  <p>{item.price.toLocaleString()} so'm</p>
+                  <p className="text-gray-400">
+                    {item.price.toLocaleString()} so'm
+                  </p>
                 </div>
               </div>
 
