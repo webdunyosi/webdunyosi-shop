@@ -57,7 +57,7 @@ const LocationSelector = ({ onLocationSelect }) => {
   }
 
   return (
-    <div className="w-full max-w-4xl mx-auto">
+    <div className="w-full">
       <div className="bg-gray-900 rounded-xl shadow-2xl p-6 border border-gray-700 text-white">
         <div className="flex items-center justify-between mb-6">
           <h2 className="text-2xl font-bold">
