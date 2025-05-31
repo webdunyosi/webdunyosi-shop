@@ -2,15 +2,12 @@ import React from "react"
 
 const ProductCard = ({ product, onBuy, onCardClick }) => {
   return (
-    <div
-      className="bg-gray-900 shadow-lg rounded-2xl p-5 flex flex-col items-center transition transform hover:scale-105"
-      onClick={() => onCardClick(product)}
-      style={{ cursor: "pointer" }}
-    >
+    <div className="bg-gray-900 shadow-lg rounded-2xl p-5 flex flex-col items-center transition transform hover:scale-105">
       <img
         src={product.image}
         alt={product.name}
-        className="w-36 h-36 object-cover mb-4 rounded-lg"
+        className="w-36 h-36 object-cover mb-4 rounded-lg cursor-pointer"
+        onClick={() => onCardClick(product)}
       />
       <h2 className="text-lg font-semibold mb-2 text-white">{product.name}</h2>
       <p className="text-lime-500 font-bold text-xl mb-4">
