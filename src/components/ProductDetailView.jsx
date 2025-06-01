@@ -55,39 +55,39 @@ const ProductDetailView = ({ product, onClose }) => {
             <div className="text-gray-300">
               <div className="flex justify-between py-2 border-b border-gray-700">
                 <span className="font-semibold text-gray-400">ISBN:</span>
-                <span>{product.isbn}</span>
+                <span>Placeholder ISBN</span>
               </div>
               <div className="flex justify-between py-2 border-b border-gray-700">
                 <span className="font-semibold text-gray-400">Yozuvi:</span>
-                <span>{product.script}</span>
+                <span>Placeholder Yozuvi</span>
               </div>
               <div className="flex justify-between py-2 border-b border-gray-700">
                 <span className="font-semibold text-gray-400">Yili:</span>
-                <span>{product.year}</span>
+                <span>Placeholder Yili</span>
               </div>
               <div className="flex justify-between py-2 border-b border-gray-700">
                 <span className="font-semibold text-gray-400">Tili:</span>
-                <span>{product.language}</span>
+                <span>Placeholder Tili</span>
               </div>
               <div className="flex justify-between py-2 border-b border-gray-700">
                 <span className="font-semibold text-gray-400">
                   Betlar soni:
                 </span>
-                <span>{product.pages}</span>
+                <span>Placeholder Betlar soni</span>
               </div>
               <div className="flex justify-between py-2 border-b border-gray-700">
                 <span className="font-semibold text-gray-400">Nashriyot:</span>
-                <span>{product.publisher}</span>
+                <span>Placeholder Nashriyot</span>
               </div>
               <div className="flex justify-between py-2 border-b border-gray-700">
                 <span className="font-semibold text-gray-400">Muqova:</span>
-                <span>{product.cover}</span>
+                <span>Placeholder Muqova</span>
               </div>
               {/* Assuming 'Tarjimon' also exists in your product data */}
               {product.translator && (
                 <div className="flex justify-between py-2 border-b border-gray-700">
                   <span className="font-semibold text-gray-400">Tarjimon:</span>
-                  <span>{product.translator}</span>
+                  <span>Placeholder Tarjimon</span>
                 </div>
               )}
             </div>
