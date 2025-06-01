@@ -1,4 +1,9 @@
 import React, { useState } from "react"
+import {
+  XMarkIcon,
+  ArrowLeftIcon,
+  ArrowRightIcon,
+} from "@heroicons/react/24/outline"
 
 const ProductDetailView = ({ product, onClose }) => {
   const [currentPage, setCurrentPage] = useState(0)
@@ -13,9 +18,9 @@ const ProductDetailView = ({ product, onClose }) => {
       <div className="bg-gray-800 p-8 rounded-xl shadow-2xl max-w-4xl w-full relative my-8">
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 text-gray-400 hover:text-white text-2xl transition-colors"
+          className="absolute top-4 right-4 text-gray-400 hover:text-white text-2xl transition-colors cursor-pointer p-2 rounded-full bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 transition-all duration-300 ease-in-out"
         >
-          &times;
+          <XMarkIcon className="h-6 w-6" />
         </button>
 
         <div className="flex flex-col md:flex-row gap-8">
@@ -29,7 +34,7 @@ const ProductDetailView = ({ product, onClose }) => {
               />
               <button
                 onClick={() => setShowGallery(true)}
-                className="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white font-semibold rounded-lg"
+                className="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white font-semibold rounded-lg cursor-pointer"
               >
                 Kitob sahifalarini ko'rish
               </button>
@@ -90,17 +95,17 @@ const ProductDetailView = ({ product, onClose }) => {
 
         {/* Book Pages Gallery Modal */}
         {showGallery && (
-          <div className="fixed inset-0 bg-black bg-opacity-95 flex items-center justify-center z-50">
+          <div className="fixed inset-0 bg-black bg-opacity-95 bg-gradient-to-br from-gray-900 to-black backdrop-blur-md flex items-center justify-center z-50">
             <div className="max-w-4xl w-full p-4">
               <div className="flex justify-between items-center mb-4">
-                <h3 className="text-white text-xl font-semibold">
+                <h3 className="text-white text-xl font-semibold drop-shadow">
                   Sahifa {currentPage + 1} / {product.bookPages.length}
                 </h3>
                 <button
                   onClick={() => setShowGallery(false)}
-                  className="text-gray-400 hover:text-white text-2xl"
+                  className="text-gray-400 hover:text-white text-3xl transition-colors cursor-pointer p-2 rounded-full bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 transition-all duration-300 ease-in-out"
                 >
-                  &times;
+                  <XMarkIcon className="h-8 w-8" />
                 </button>
               </div>
 
@@ -108,7 +113,7 @@ const ProductDetailView = ({ product, onClose }) => {
                 <img
                   src={product.bookPages[currentPage]?.image}
                   alt={`Page ${currentPage + 1}`}
-                  className="w-full h-[80vh] object-contain"
+                  className="w-full h-[80vh] object-contain shadow-xl rounded-lg"
                 />
 
                 <button
@@ -116,9 +121,9 @@ const ProductDetailView = ({ product, onClose }) => {
                     setCurrentPage((prev) => Math.max(0, prev - 1))
                   }
                   disabled={currentPage === 0}
-                  className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full disabled:opacity-50"
+                  className="absolute left-4 top-1/2 transform -translate-y-1/2 text-white p-3 rounded-full disabled:opacity-50 cursor-pointer hover:scale-110 bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 transition-all duration-300 ease-in-out"
                 >
-                  ←
+                  <ArrowLeftIcon className="h-6 w-6" />
                 </button>
 
                 <button
@@ -128,9 +133,9 @@ const ProductDetailView = ({ product, onClose }) => {
                     )
                   }
                   disabled={currentPage === product.bookPages.length - 1}
-                  className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full disabled:opacity-50"
+                  className="absolute right-4 top-1/2 transform -translate-y-1/2 text-white p-3 rounded-full disabled:opacity-50 cursor-pointer hover:scale-110 bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 transition-all duration-300 ease-in-out"
                 >
-                  →
+                  <ArrowRightIcon className="h-6 w-6" />
                 </button>
               </div>
 
@@ -141,7 +146,7 @@ const ProductDetailView = ({ product, onClose }) => {
                     onClick={() => setCurrentPage(index)}
                     className={`w-2 h-2 rounded-full ${
                       currentPage === index ? "bg-white" : "bg-gray-600"
-                    }`}
+                    } cursor-pointer`}
                   />
                 ))}
               </div>
