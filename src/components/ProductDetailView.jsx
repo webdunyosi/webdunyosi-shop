@@ -8,12 +8,6 @@ const ProductDetailView = ({ product, onClose }) => {
     return null
   }
 
-  // Mock book pages - in real app, this would come from your product data
-  const bookPages = [
-    { id: 1, image: "/2.png" },
-    { id: 2, image: "/3.png" },
-  ]
-
   return (
     <div className="fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-50 overflow-y-auto">
       <div className="bg-gray-800 p-8 rounded-xl shadow-2xl max-w-4xl w-full relative my-8">
@@ -100,7 +94,7 @@ const ProductDetailView = ({ product, onClose }) => {
             <div className="max-w-4xl w-full p-4">
               <div className="flex justify-between items-center mb-4">
                 <h3 className="text-white text-xl font-semibold">
-                  Sahifa {currentPage + 1} / {bookPages.length}
+                  Sahifa {currentPage + 1} / {product.bookPages.length}
                 </h3>
                 <button
                   onClick={() => setShowGallery(false)}
@@ -112,7 +106,7 @@ const ProductDetailView = ({ product, onClose }) => {
 
               <div className="relative">
                 <img
-                  src={bookPages[currentPage]?.image}
+                  src={product.bookPages[currentPage]?.image}
                   alt={`Page ${currentPage + 1}`}
                   className="w-full h-[80vh] object-contain"
                 />
@@ -130,10 +124,10 @@ const ProductDetailView = ({ product, onClose }) => {
                 <button
                   onClick={() =>
                     setCurrentPage((prev) =>
-                      Math.min(bookPages.length - 1, prev + 1)
+                      Math.min(product.bookPages.length - 1, prev + 1)
                     )
                   }
-                  disabled={currentPage === bookPages.length - 1}
+                  disabled={currentPage === product.bookPages.length - 1}
                   className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full disabled:opacity-50"
                 >
                   →
@@ -141,7 +135,7 @@ const ProductDetailView = ({ product, onClose }) => {
               </div>
 
               <div className="flex justify-center gap-2 mt-4">
-                {bookPages.map((_, index) => (
+                {product.bookPages.map((_, index) => (
                   <button
                     key={index}
                     onClick={() => setCurrentPage(index)}
