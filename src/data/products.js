@@ -8,7 +8,7 @@ const products = [
   {
     id: 2,
     name: "Rangli Kitob",
-    price: 12_000,
+    price: 10_000,
     image: "4.png",
   },
   {
